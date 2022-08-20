@@ -1,4 +1,4 @@
-var acerto = false;
+var verificPoint = false;
 var numDisplay = '';
 var DisplayDiv = document.getElementById('display');
 var iAntes;
@@ -21,10 +21,10 @@ function display(i) {
   } else {
     if (numDisplay.indexOf('.') > 0) {
       if (i == '.') {
-        if (acerto) {
+        if (verificPoint) {
           numDisplay += i;
           DisplayDiv.innerText = numDisplay;
-          acerto = false;
+          verificPoint = false;
         }
         return;
       }
@@ -46,13 +46,13 @@ function operacoes(i) {
     numDisplay += i;
     DisplayDiv.innerText += i;
     iAntes = i;
-    acerto = true;
+    verificPoint = true;
   }
 }
 function apagarDisplay() {
   DisplayDiv.innerHTML = '0';
   numDisplay = '';
-  acerto = false;
+  verificPoint = false;
 }
 function calcularResultado() {
   var pt1 = numDisplay.substring(0, numDisplay.indexOf(iAntes));
@@ -72,7 +72,7 @@ function calcularResultado() {
   if (iAntes == '/') {
     var resultado = parseFloat(pt1) / parseFloat(pt2);
   }
-  acerto = false;
+  verificPoint = false;
   numDisplay = String(resultado);
   DisplayDiv.innerText = numDisplay;
 }
