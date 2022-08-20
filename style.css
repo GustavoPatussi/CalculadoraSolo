@@ -1,0 +1,38 @@
+:root{
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    background-image:radial-gradient(red, black);
+}
+.container{
+    max-width: 20em;
+}
+.container > p {
+    text-align: center;
+}
+.calculadora{
+    border-radius: 12px;
+    box-shadow: 0 0 40px 0px rgba(0, 0, 0, 0.15);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+    max-width: 15em;
+    overflow: hidden;
+}
+#display{
+    background-color: rgb(50, 44, 44);
+    color: white;
+    font-size: 1.7em;
+    padding: 0.5em 0.75rem;
+    text-align: right;
+}
+.teclas{
+    background-color: beige;
+    display: grid;
+    grid-gap: 1px;
+    grid-template-columns: repeat(4, 1fr);
+}
