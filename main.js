@@ -1,78 +1,79 @@
-var verificPoint = false;
-var numDisplay = '';
+var checkPoint = false;
+var conteudoDisplay = '';
 var DisplayDiv = document.getElementById('display');
-var iAntes;
+var operador;
 function display(i) {
-  if (DisplayDiv.innerText == 0) {
-    if (i == '.') {
-      numDisplay = '0';
-      numDisplay += i;
-      DisplayDiv.innerText = numDisplay;
-      return;
-    } else {
-      if (numDisplay.indexOf('.') > 0) {
-        numDisplay += i;
-        DisplayDiv.innerText = numDisplay;
-        return;
-      }
-      numDisplay = i;
-      DisplayDiv.innerText = numDisplay;
-    }
-  } else {
-    if (numDisplay.indexOf('.') > 0) {
-      if (i == '.') {
-        if (verificPoint) {
-          numDisplay += i;
-          DisplayDiv.innerText = numDisplay;
-          verificPoint = false;
+    if (DisplayDiv.innerText == 0) {
+        if (i == '.') {
+            conteudoDisplay = '0';
+            conteudoDisplay += i;
+            DisplayDiv.innerText = conteudoDisplay;
+            return;
         }
-        return;
-      }
+        else {
+            if (conteudoDisplay.indexOf('.') > 0) {
+                conteudoDisplay += i;
+                DisplayDiv.innerText = conteudoDisplay;
+                return;
+            }
+            conteudoDisplay = i;
+            DisplayDiv.innerText = conteudoDisplay;
+        }
     }
-    numDisplay += i;
-    DisplayDiv.innerText = numDisplay;
-  }
+    else {
+        if (i == '.') {
+            if (conteudoDisplay.indexOf('.') > 0) {
+                if (checkPoint) {
+                    conteudoDisplay += i;
+                    DisplayDiv.innerText = conteudoDisplay;
+                    checkPoint = false;
+                }
+                return;
+            }
+            else{
+                conteudoDisplay += i;
+                DisplayDiv.innerText = conteudoDisplay;
+                checkPoint = false;
+            }
+            return;
+        }
+        else{
+            conteudoDisplay += i;
+            DisplayDiv.innerText = conteudoDisplay;
+        }
+    }
 }
 function operacoes(i) {
-  if (DisplayDiv.innerText == 0) {
-    return;
-  }
-  if (numDisplay.indexOf(iAntes) > 0) {
-    numDisplay = numDisplay.replace(iAntes, i);
-    DisplayDiv.innerText = numDisplay;
-    iAntes = i;
-    return;
-  } else {
-    numDisplay += i;
-    DisplayDiv.innerText += i;
-    iAntes = i;
-    verificPoint = true;
-  }
+    if (DisplayDiv.innerText == 0) {
+        return;
+    }
+    if (conteudoDisplay.indexOf(operador) > 0) {
+        conteudoDisplay = conteudoDisplay.replace(operador, i);
+        DisplayDiv.innerText = conteudoDisplay;
+        operador = i;
+        return;
+    }
+    else {
+        conteudoDisplay += i;
+        DisplayDiv.innerText += i;
+        operador = i;
+        checkPoint = true;
+    }
+
 }
 function apagarDisplay() {
-  DisplayDiv.innerHTML = '0';
-  numDisplay = '';
-  verificPoint = false;
+    DisplayDiv.innerHTML = '0';
+    conteudoDisplay = '';
+    checkPoint = false;
 }
 function calcularResultado() {
-  var pt1 = numDisplay.substring(0, numDisplay.indexOf(iAntes));
-  var pt2 = numDisplay.substring(
-    numDisplay.indexOf(iAntes) + 1,
-    numDisplay.length
-  );
-  if (iAntes == '+') {
-    var resultado = parseFloat(pt1) + parseFloat(pt2);
-  }
-  if (iAntes == '-') {
-    var resultado = parseFloat(pt1) - parseFloat(pt2);
-  }
-  if (iAntes == '*') {
-    var resultado = parseFloat(pt1) * parseFloat(pt2);
-  }
-  if (iAntes == '/') {
-    var resultado = parseFloat(pt1) / parseFloat(pt2);
-  }
-  verificPoint = false;
-  numDisplay = String(resultado);
-  DisplayDiv.innerText = numDisplay;
+    var resultado = eval(conteudoDisplay);
+    checkPoint = false;
+    conteudoDisplay = String(resultado);
+    DisplayDiv.innerText = conteudoDisplay;
+    
+    if ((conteudoDisplay == "undefined") || (conteudoDisplay == "NaN")) {
+        conteudoDisplay = '0'
+        DisplayDiv.innerText = '0';
+    }
 }

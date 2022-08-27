@@ -20,7 +20,7 @@ body{
     margin-left: auto;
     margin-right: auto;
     margin-top: 2em;
-    max-width: 15em;
+    max-width: 20em;
     overflow: hidden;
 }
 #display{
@@ -29,10 +29,19 @@ body{
     font-size: 1.7em;
     padding: 0.5em 0.75rem;
     text-align: right;
+    height: 2em;
 }
 .teclas{
     background-color: beige;
     display: grid;
     grid-gap: 1px;
     grid-template-columns: repeat(4, 1fr);
+    height: 20em;
+    width: 20em;
+}
+.tecla-igual{
+    background-image: radial-gradient(rgb(131, 111, 111), rgb(97, 81, 81));
+    grid-row: 2 / span 4;
+    grid-column: -2;
+    border: 0px;
 }
